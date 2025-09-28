@@ -1,27 +1,30 @@
 <?php
 
-namespace App\Filament\Resources\Users\Tables;
+namespace App\Filament\Resources\Projects\Tables;
 
-use Filament\Tables\Table;
-use Filament\Actions\EditAction;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Filament\Support\Icons\Heroicon;
 
-class UsersTable
+class ProjectsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
+                TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
+                TextColumn::make('slug')
                     ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
+                TextColumn::make('difficulty_level')
+                    ->badge(),
+                TextColumn::make('creator.name')
+                    ->label('Created By')
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -36,6 +39,11 @@ class UsersTable
                 //
             ])
             ->recordActions([
+                Action::make('manage_stages')
+                    ->label('Manage Stages')
+                    ->icon(Heroicon::OutlinedListBullet)
+                    ->color('info')
+                    ->url(fn ($record) => route('filament.learn.resources.project-stages.index', ['project_id' => $record->id])),
                 EditAction::make(),
                 DeleteAction::make(),
             ])
