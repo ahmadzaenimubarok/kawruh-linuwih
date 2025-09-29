@@ -167,7 +167,7 @@
                 <div class="space-y-2">
                     <div class="flex justify-between text-sm">
                         <span class="text-gray-600 dark:text-gray-400">Overall Progress</span>
-                        <span class="font-medium text-gray-800 dark:text-gray-900">{{ $progressPercentage }}%</span>
+                        <span class="font-medium text-gray-600 dark:text-gray-400">{{ $progressPercentage }}%</span>
                     </div>
                     <div class="w-full bg-gray-200 dark:bg-gray-200 rounded-full h-2">
                         <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" 
@@ -176,18 +176,18 @@
                 </div>
                 
                 <!-- Statistics -->
-                <div class="flex justify-between items-center bg-gray-100 rounded-lg p-6">
+                <div class="flex justify-between items-center bg-gray-100 dark:bg-gray-900 rounded-lg p-6">
                     <div class="text-center flex-1">
                         <div class="text-2xl font-bold text-green-600 mb-1">{{ $completedStages }}</div>
-                        <div class="text-sm text-gray-600">Completed</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">Completed</div>
                     </div>
                     <div class="text-center flex-1">
                         <div class="text-2xl font-bold text-blue-600 mb-1">{{ $inProgressStages }}</div>
-                        <div class="text-sm text-gray-600">In Progress</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">In Progress</div>
                     </div>
                     <div class="text-center flex-1">
                         <div class="text-2xl font-bold text-gray-600 mb-1">{{ $notStartedStages }}</div>
-                        <div class="text-sm text-gray-600">Not Started</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">Not Started</div>
                     </div>
                 </div>
                 

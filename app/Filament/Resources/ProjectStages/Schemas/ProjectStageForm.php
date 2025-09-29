@@ -4,9 +4,9 @@ namespace App\Filament\Resources\ProjectStages\Schemas;
 
 use App\Models\Project;
 use App\Models\ProjectStage;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 
 class ProjectStageForm
@@ -26,9 +26,6 @@ class ProjectStageForm
                 TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Textarea::make('instructions')
-                    ->required()
-                    ->rows(4),
                 TextInput::make('order_no')
                     ->label('Order Number')
                     ->numeric()
@@ -48,6 +45,25 @@ class ProjectStageForm
                         // Default to 1 if no project_id is available
                         return 1;
                     }),
+                RichEditor::make('instructions')
+                    ->required()
+                    ->toolbarButtons([
+                        'attachFiles',
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'codeBlock',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
+                    ->columnSpan('full'),
             ]);
     }
 }

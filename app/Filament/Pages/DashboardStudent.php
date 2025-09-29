@@ -115,12 +115,52 @@ class DashboardStudent extends Page implements HasTable
                     ->icon('heroicon-o-play')
                     ->color('success')
                     ->action(function (Project $record) {
-                        // Placeholder for start learning functionality
-                        Notification::make()
-                            ->title('Project Started')
-                            ->body("Starting project: {$record->title}")
-                            ->success()
-                            ->send();
+                        $userId = Auth::id();
+                        
+                        // Check if student project already exists
+                        $studentProject = StudentProject::where('user_id', $userId)
+                            ->where('project_id', $record->id)
+                            ->first();
+                        
+                        if (!$studentProject) {
+                            // Create new student project
+                            $studentProject = StudentProject::create([
+                                'user_id' => $userId,
+                                'project_id' => $record->id,
+                                'status' => 'in_progress',
+                                'started_at' => now(),
+                            ]);
+                            
+                            // Create student project stages for all project stages
+                            $projectStages = $record->stages()->ordered()->get();
+                            
+                            foreach ($projectStages as $stage) {
+                                StudentProjectStage::create([
+                                    'student_project_id' => $studentProject->id,
+                                    'stage_id' => $stage->id,
+                                    'status' => 'not_started',
+                                ]);
+                            }
+                            
+                            Notification::make()
+                                ->title('Project Started Successfully!')
+                                ->body("You have started learning: {$record->title}")
+                                ->success()
+                                ->send();
+                        } else {
+                            // Project already started
+                            Notification::make()
+                                ->title('Project Already Started')
+                                ->body("You have already started this project: {$record->title}")
+                                ->warning()
+                                ->send();
+                        }
+                        
+                        // Redirect to stage-content page with project slug and first stage
+                        return redirect()->route('filament.learn.pages.stage-content', [
+                            'projectSlug' => $record->slug,
+                            'orderNo' => 1
+                        ]);
                     }),
             ])
             ->defaultSort('created_at', 'desc')
