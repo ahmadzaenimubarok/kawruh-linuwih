@@ -55,4 +55,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Project::class, 'created_by');
     }
+
+    /**
+     * Get the quizzes taken by this user.
+     */
+    public function quizzes(): HasMany
+    {
+        return $this->hasMany(Quiz::class);
+    }
 }
