@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProjectStage extends Model
 {
@@ -39,6 +40,14 @@ class ProjectStage extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * Get the student project stages for this stage.
+     */
+    public function studentProjectStages(): HasMany
+    {
+        return $this->hasMany(StudentProjectStage::class, 'stage_id');
     }
 
     /**

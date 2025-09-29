@@ -10,8 +10,8 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <x-filament::card>
                 <div class="flex items-center">
-                    <div class="p-2 bg-green-100 rounded-lg">
-                        <x-heroicon-o-star class="w-6 h-6 text-green-600" />
+                    <div class="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                        <x-heroicon-o-star class="w-6 h-6 text-green-600 dark:text-green-700" />
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-muted">Beginner Projects</p>
@@ -26,7 +26,7 @@
             <x-filament::card>
                 <div class="flex items-center">
                     <div class="p-2 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg">
-                        <x-heroicon-o-fire class="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
+                        <x-heroicon-o-fire class="w-6 h-6 text-yellow-600 dark:text-yellow-700" />
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-muted">Intermediate Projects</p>
@@ -38,7 +38,7 @@
             <x-filament::card>
                 <div class="flex items-center">
                     <div class="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg">
-                        <x-heroicon-o-bolt class="w-6 h-6 text-red-600 dark:text-red-400" />
+                        <x-heroicon-o-bolt class="w-6 h-6 text-red-600 dark:text-red-700" />
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-muted">Advanced Projects</p>

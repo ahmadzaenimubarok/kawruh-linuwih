@@ -15,4 +15,12 @@ class EditUser extends EditRecord
             
         ];
     }
+
+    /**
+     * Get the URL to redirect to after the record is created.
+     */
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

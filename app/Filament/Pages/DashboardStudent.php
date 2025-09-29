@@ -3,6 +3,9 @@
 namespace App\Filament\Pages;
 
 use App\Models\Project;
+use App\Models\ProjectStage;
+use App\Models\StudentProject;
+use App\Models\StudentProjectStage;
 use Filament\Pages\Page;
 use Filament\Tables\Table;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -15,6 +18,7 @@ use Filament\Notifications\Notification;
 use Filament\Support\Icons\Heroicon;
 use BackedEnum;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardStudent extends Page implements HasTable
 {
@@ -91,13 +95,20 @@ class DashboardStudent extends Page implements HasTable
                     ->label('View Stages')
                     ->icon('heroicon-o-list-bullet')
                     ->color('info')
-                    ->url(fn (Project $record): string => 
-                        route('filament.learn.resources.project-stages.index', [
-                            'tableFilters' => [
-                                'project_id' => ['value' => $record->id]
-                            ]
-                        ])
-                    ),
+                    ->modalHeading(fn (Project $record): string => "Stages for: {$record->title}")
+                    ->modalDescription(fn (Project $record): string => $record->description)
+                    ->modalContent(fn (Project $record): \Illuminate\Contracts\View\View => view(
+                        'filament.modals.project-stages',
+                        [
+                            'stages' => $record->stages()->ordered()->get(),
+                            'currentUserId' => Auth::id(),
+                            'project' => $record
+                        ]
+                    ))
+                    ->modalWidth('4xl')
+                    ->modalCancelAction(false)
+                    ->modalSubmitAction(false)
+                    ->modalCloseButton(true),
                 
                 Action::make('start_learning')
                     ->label('Start Learning')

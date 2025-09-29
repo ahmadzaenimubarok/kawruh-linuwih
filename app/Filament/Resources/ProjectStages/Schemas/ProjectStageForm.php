@@ -20,7 +20,7 @@ class ProjectStageForm
                     ->options(Project::all()->pluck('title', 'id'))
                     ->required()
                     ->searchable()
-                    ->disabled(fn () => request()->has('project_id'))
+                    ->disabled(fn (?ProjectStage $record) => ($record && $record->exists) || request()->has('project_id'))
                     ->default(fn () => request()->get('project_id'))
                     ->dehydrated(),
                 TextInput::make('title')

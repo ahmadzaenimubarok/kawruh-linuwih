@@ -18,7 +18,23 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                // Ensure these colors are available
+                blue: {
+                    600: '#2563eb',
+                },
+                indigo: {
+                    600: '#4f46e5',
+                },
+                green: {
+                    600: '#16a34a',
+                },
+                gray: {
+                    600: '#4b5563',
+                },
+            },
         },
     },
     plugins: [forms],
+    darkMode: 'class',
 };
