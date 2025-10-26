@@ -22,7 +22,8 @@
         answers: [],
         score: 0,
         showResults: false,
-        questions: {{ Js::from($questions) }},
+        isGenerating: false,
+        questions: $wire.entangle('questions'),
         
         get totalQuestions() {
             return this.questions.length;
@@ -40,10 +41,24 @@
             return Math.round((this.score / this.totalQuestions) * 100);
         },
         
-        startQuiz() {
-            this.quizStarted = true;
-            this.quizCompleted = false;
-            this.resetAnswers();
+        async startQuiz() {
+            // Set loading state
+            this.isGenerating = true;
+            
+            try {
+                // Call Livewire method to generate questions
+                await $wire.generateQuestion();
+                
+                // Start quiz after questions are generated
+                this.quizStarted = true;
+                this.quizCompleted = false;
+                this.resetAnswers();
+            } catch (error) {
+                console.error('Error generating questions:', error);
+                alert('Failed to generate questions. Please try again.');
+            } finally {
+                this.isGenerating = false;
+            }
         },
         
         resetAnswers() {
@@ -162,10 +177,12 @@
                 <x-filament::button
                     color="primary"
                     size="lg"
-                    icon="heroicon-m-play"
+                    ::icon="isGenerating ? 'heroicon-m-arrow-path' : 'heroicon-m-play'"
+                    ::disabled="isGenerating"
                     @click="startQuiz()"
                 >
-                    Start Quiz
+                    <span x-show="!isGenerating">Start Quiz</span>
+                    <span x-show="isGenerating">Generating Questions...</span>
                 </x-filament::button>
             </div>
         </div>

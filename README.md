@@ -1,61 +1,129 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🪶 Kawruh Linuwih  
+> Ilmu yang lebih, unggul, dan memberi penerang bagi kehidupan.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+## 🧭 Ringkasan
+**Kawruh Linuwih** adalah platform pembelajaran daring gratis berbasis **Laravel 12** dan **Filament 4**,  
+dilengkapi dengan integrasi **AI Groq** untuk menghadirkan pengalaman belajar yang lebih interaktif, adaptif, dan cerdas.  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Proyek ini bertujuan menyebarkan ilmu yang bermanfaat (*kawruh migunani*) kepada semua orang,  
+dengan semangat *ngudi kawruh* — mencari pengetahuan yang luhur dan berguna bagi sesama.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ⚙️ Teknologi Utama
+| Komponen | Deskripsi |
+|-----------|------------|
+| **Laravel 12** | Framework backend utama |
+| **Filament 4** | Admin panel, dashboard, dan halaman pembelajaran |
+| **Alpine.js & TailwindCSS** | Interaktivitas ringan & tampilan modern |
+| **MySQL / PostgreSQL** | Basis data utama |
+| **Groq AI API** | Generasi otomatis quiz, ringkasan materi, dan insight pembelajaran |
+| **Laravel Pennant / Breeze** | Autentikasi & manajemen fitur |
+| **Spatie Permission** | Role & hak akses pengguna |
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🧩 Fitur Utama
+- 🔐 **Autentikasi Pengguna**  
+  Login, registrasi, dan reset password.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- 📚 **Manajemen Course & Lesson (Filament Resource)**  
+  Admin dapat membuat course, mengunggah materi, dan mengatur urutan pelajaran.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- 🤖 **AI Groq Integration**  
+  - Membuat soal/quiz otomatis dari materi.  
+  - Merangkum materi panjang menjadi poin penting.  
+  - Memberikan rekomendasi course berdasarkan pola belajar pengguna.  
 
-## Laravel Sponsors
+- ▶️ **Halaman Belajar (Course Player)**  
+  - Tampilan ringkas untuk video, teks, atau PDF.  
+  - Navigasi next/previous antar lesson.  
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- ✅ **Progress Tracking**  
+  - Menandai lesson yang sudah diselesaikan.  
+  - Statistik belajar pengguna.
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🗂️ Struktur Halaman
+| Path | Deskripsi |
+|------|------------|
+| `/login` | Halaman login |
+| `/dashboard-student` | Dashboard student & detail course |
+| `/stage-content/{slug}` | Halaman Belajar |
+| `/admin` | Panel Filament (manajemen course, user, AI setting) |
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🧱 Struktur Database (Rencana Awal)
+- **users** — bawaan Laravel (id, name, email, password, role)  
+- **projects** — (id, title, description, difficulty, created_by)  
+- **project_stages** — (id, project_id, title, instructions, order)  
+- **student_projects** — (id, user_id, project_id, status)  
+- **student_project_stages** — (id, student_project_id, user_id, status, created_at)
+- **quizzes** — (id, student_project_stage_id, score, total_question)
+- **quiz_answer** — (id, quiz_id, question, options_json, selected_answer, is_correct)
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🚀 Instalasi
+```bash
+# 1. Clone repo
+git clone https://github.com/username/kawruh-linuwih.git
+cd kawruh-linuwih
 
-## Security Vulnerabilities
+# 2. Install dependency
+composer install
+npm install && npm run build
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# 3. Konfigurasi environment
+cp .env.example .env
+php artisan key:generate
 
-## License
+# 4. Migrasi database
+php artisan migrate --seed
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# 5. Jalankan server
+php artisan serve
+```
+
+---
+
+## 🤖 Integrasi AI Groq
+Tambahkan kredensial Groq di file `.env`:
+
+```
+GROQ_API_KEY=your_api_key_here
+```
+
+Contoh penggunaan di Laravel service:
+
+```php
+use App\Services\GroqService;
+
+$response = app(GroqService::class)->generateQuizFromLesson($lessonContent);
+```
+
+---
+
+## 🌸 Filosofi
+> *“Ngudi kawruh sing linuwih, ora mung kanggo pinter, nanging kanggo migunani.”*  
+> — Mencari ilmu yang unggul, bukan hanya untuk kepintaran, tetapi untuk memberi manfaat.
+
+---
+
+## 🧑‍💻 Pengembang
+Proyek ini dikembangkan oleh **Ahmad**,  
+sebagai bagian dari inisiatif membangun ekosistem pembelajaran teknologi berbasis budaya lokal.
+
+---
+
+## 🕊️ Lisensi
+Proyek ini dirilis di bawah **MIT License**.  
+Silakan gunakan, modifikasi, dan kembangkan untuk tujuan pembelajaran dan riset.
+
+---
+
+> 🪷 *Kawruh Linuwih — Ilmu yang membawa keunggulan dan kebermanfaatan.*

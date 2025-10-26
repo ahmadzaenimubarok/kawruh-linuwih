@@ -58,12 +58,12 @@ class StageContent extends Page
                 $this->orderNo = $this->stage->order_no;
             }
         }
-        
-        // Generate questions if stage is found
-        if ($this->stage && $this->stage->instructions) {
-            $aiChatService = app(AIChatService::class);
-            $this->questions = $aiChatService->generateQuestion($this->stage->instructions);
-        }
+    }
+
+    public function generateQuestion()
+    {
+        $aiChatService = app(AIChatService::class);
+        $this->questions = $aiChatService->generateQuestion($this->stage->instructions);
     }
 
     public function getTitle(): string|Htmlable
