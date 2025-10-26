@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\ProjectStage;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
+use App\Services\AIChatService;
 
 class StageContent extends Page
 {
@@ -19,6 +20,7 @@ class StageContent extends Page
     public ?Project $project = null;
     public ?string $projectSlug = null;
     public ?int $orderNo = null;
+    public ?array $questions = [];
 
     public function mount(?string $projectSlug = null, ?int $orderNo = null): void
     {
@@ -56,6 +58,12 @@ class StageContent extends Page
                 $this->orderNo = $this->stage->order_no;
             }
         }
+        
+        // Generate questions if stage is found
+        if ($this->stage && $this->stage->instructions) {
+            $aiChatService = app(AIChatService::class);
+            $this->questions = $aiChatService->generateQuestion($this->stage->instructions);
+        }
     }
 
     public function getTitle(): string|Htmlable
@@ -70,6 +78,7 @@ class StageContent extends Page
             'project' => $this->project,
             'projectSlug' => $this->projectSlug,
             'orderNo' => $this->orderNo,
+            'questions' => $this->questions,
         ];
     }
 

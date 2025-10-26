@@ -350,6 +350,9 @@
                 @endif
             </x-filament::section>
 
+            {{-- AI Quiz Section --}}
+            <x-quiz-section :questions="$questions" />
+
             {{-- Navigation Actions --}}
             <x-filament::section>
                 <div class="flex justify-between items-center">

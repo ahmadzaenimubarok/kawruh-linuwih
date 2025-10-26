@@ -176,20 +176,22 @@
                 </div>
                 
                 <!-- Statistics -->
-                <div class="flex justify-between items-center bg-gray-100 dark:bg-gray-900 rounded-lg p-6">
-                    <div class="text-center flex-1">
-                        <div class="text-2xl font-bold text-green-600 mb-1">{{ $completedStages }}</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Completed</div>
+                <x-filament::card>
+                    <div class="flex justify-between items-center w-full">
+                        <div class="text-center flex-1">
+                            <div class="text-2xl font-bold text-green-600 mb-1">{{ $completedStages }}</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Completed</div>
+                        </div>
+                        <div class="text-center flex-1">
+                            <div class="text-2xl font-bold text-blue-600 mb-1">{{ $inProgressStages }}</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">In Progress</div>
+                        </div>
+                        <div class="text-center flex-1">
+                            <div class="text-2xl font-bold text-gray-600 mb-1">{{ $notStartedStages }}</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Not Started</div>
+                        </div>
                     </div>
-                    <div class="text-center flex-1">
-                        <div class="text-2xl font-bold text-blue-600 mb-1">{{ $inProgressStages }}</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400">In Progress</div>
-                    </div>
-                    <div class="text-center flex-1">
-                        <div class="text-2xl font-bold text-gray-600 mb-1">{{ $notStartedStages }}</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Not Started</div>
-                    </div>
-                </div>
+                </x-filament::card>
                 
                 <div class="pt-2 border-t border-gray-200 dark:border-gray-700">
                     <p class="text-sm text-gray-600 dark:text-gray-400">

@@ -11,6 +11,7 @@ export default {
         './resources/views/**/*.blade.php',
         './app/Filament/**/*.php',
         './resources/views/filament/**/*.blade.php',
+        './resources/views/components/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
     ],
     theme: {

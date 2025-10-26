@@ -134,11 +134,11 @@ class DashboardStudent extends Page implements HasTable
                             // Create student project stages for all project stages
                             $projectStages = $record->stages()->ordered()->get();
                             
-                            foreach ($projectStages as $stage) {
+                            foreach ($projectStages as $index => $stage) {
                                 StudentProjectStage::create([
                                     'student_project_id' => $studentProject->id,
                                     'stage_id' => $stage->id,
-                                    'status' => 'not_started',
+                                    'status' => $index === 0 ? 'in_progress' : 'not_started',
                                 ]);
                             }
                             

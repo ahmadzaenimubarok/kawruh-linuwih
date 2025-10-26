@@ -11,3 +11,4 @@ Route::get('/user', function (Request $request) {
 Route::get('/groq/models', [GroqController::class, 'listModels']);
 Route::post('/groq/test-chat', [GroqController::class, 'testChat']);
 Route::get('/groq/test-chat', [GroqController::class, 'testChat']);
+Route::get('/groq/generate-question', [GroqController::class, 'generateQuestion']);
